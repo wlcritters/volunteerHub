@@ -1,0 +1,45 @@
+function getApplications(url) {
+  var response = ["asdf"];
+  console.log("calling: " + url)
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: 'json',
+    success: (result) => {
+      console.log(result.success)
+      loadMainMenu(result.permissions);
+    },
+    error: (error) => {
+      alert('System Error @ getApplication in mainMenu, please contact support');
+    }
+  })
+}
+
+function loadMainMenu(permissions){
+  var ul = document.getElementById("mainMenu");
+  console.log(permissions)
+  if (!permissions || permissions.length != 0) {
+    createMenuItems(permissions, ul);
+  } else {
+    createLogin(ul);
+  }
+}
+
+function createLogin(ul) {
+  var li = document.createElement("li");
+  li.innerHTML = createAnchor(LOGIN_URL, "Login");
+  ul.appendChild(li);
+}
+
+function createMenuItems(permissions, ul){
+  var li = document.createElement("li");
+  li.innerHTML = createAnchor(LOGOUT_URL,"Logout");
+  ul.appendChild(li);
+}
+
+function  createAnchor(url,text){
+  return "<a href='" + url + "'>" + text + "</a>";
+}
+
+
+
