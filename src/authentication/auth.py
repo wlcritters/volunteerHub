@@ -121,7 +121,7 @@ def get_permissions():
         payload = verify_decode_jwt(token)
         response = payload.get('permissions')
         print(response)
-        if response is None or response.size == 0:
+        if response is None or len(response) == 0:
             response = ['logout']
     except AuthError:
         response = []
