@@ -1,5 +1,4 @@
 function getApplications(url) {
-  var response = ["asdf"];
   console.log("calling: " + url)
   $.ajax({
     url: url,
